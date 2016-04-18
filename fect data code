@@ -1,0 +1,31 @@
+<?php
+/*
+Template Name: customtemplate
+* @package Biscaya
+*/
+get_header(); ?>
+	<div class="row-fluid">		
+			<div class="content-area">
+				<main id="main" class="site-main" role="main">
+				
+				<?php
+				global $wpdb;
+// this adds the prefix which is set by the user upon instillation of wordpress
+$table_name = $wpdb->prefix . "users";
+// this will get the data from your table
+$retrieve_data = $wpdb->get_results( "SELECT * FROM $table_name" );
+?>
+<ul>
+<?php
+foreach ($retrieve_data as $retrieved_data){ ?>
+<li><?php echo $retrieved_data->user_login;?></li>
+<li><?php echo $retrieved_data->user_pass;?></li>
+<li><?php echo $retrieved_data->user_email;?></li>
+<?php 
+}
+?>
+</ul>
+	</main><!-- #main -->				
+			</div><!-- #primary -->		
+	</div><!-- .row-fluid -->
+<?php get_footer(); ?>
